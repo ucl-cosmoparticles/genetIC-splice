@@ -1444,6 +1444,19 @@ public:
     });
   }
 
+  //! Flag all cells contained in the cube centered at the coordinates currently pointed at
+  /*!
+   * \param a in Mpc/h
+   * \param b in Mpc/h
+   * \param c in Mpc/h
+   * */
+  void selectRectangle(float a, float b, float c) {
+    T side_by_2 = side / 2;
+    select([side_by_2](T delta_x, T delta_y, T delta_z) -> bool {
+      return abs(delta_x) < (a / 2) && abs(delta_y) < (b / 2) && abs(delta_z) < (c / 2);
+    });
+  }
+
   //! Expand the current flagged region by the specified number of cells
   void expandFlaggedRegion(size_t nCells) {
     if (multiLevelContext.getNumLevels() < 1) {
