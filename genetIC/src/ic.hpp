@@ -1451,8 +1451,7 @@ public:
    * \param c in Mpc/h
    * */
   void selectRectangle(float a, float b, float c) {
-    T side_by_2 = side / 2;
-    select([side_by_2](T delta_x, T delta_y, T delta_z) -> bool {
+    select([a, b, c](T delta_x, T delta_y, T delta_z) -> bool {
       return abs(delta_x) < (a / 2) && abs(delta_y) < (b / 2) && abs(delta_z) < (c / 2);
     });
   }
